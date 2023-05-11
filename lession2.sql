@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3307
--- Thời gian đã tạo: Th5 10, 2023 lúc 07:12 PM
+-- Thời gian đã tạo: Th5 11, 2023 lúc 02:52 AM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.1.12
 
@@ -62,7 +62,14 @@ INSERT INTO `products` (`ID`, `ProductName`, `IDCategory`, `Image`) VALUES
 (1, 'Acer', 1, '1.jpg'),
 (2, 'Asus', 1, '1.jpg'),
 (3, 'Samsung', 2, '1.jpg'),
-(4, 'Iphone', 2, '1.jpg');
+(4, 'Iphone', 2, '1.jpg'),
+(6, 'Blackberry', 2, '5f62867a3e7f8a130e22876faed80921.jpeg'),
+(7, 'Lenovo', 1, '3691c75dc171a8bfbea0ff966963a845.jpg'),
+(8, 'Dell', 1, 'de290f60747b6e9a0c2f893422d59d81.jpg'),
+(9, 'HP', 1, 'b9fa6a7c5f18b41a658c23060893aec5.jpg'),
+(10, 'Google pixel', 2, '8fd735bd3e49e927a93bab018e8da957.jpg'),
+(11, 'Nokia', 2, 'f454d674225ce5d2b523176c844e46ba.jpg'),
+(12, 'Xiaomi', 2, '9d4494f99566d817410f2e253d55b43d.jpeg');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -89,13 +96,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

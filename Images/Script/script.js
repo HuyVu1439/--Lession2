@@ -1,5 +1,5 @@
 let thisPage = 1;
-let limit = 2;
+let limit = 10;
 let list = document.querySelectorAll('.list .item'); 
 
 function loadItem(){
@@ -7,7 +7,7 @@ function loadItem(){
     let endGet = limit * thisPage - 1;
     list.forEach((item,key)=>{
         if(key>=beginGet && key<=endGet){
-            item.style.display = 'block';
+            item.style.display = 'table-row';
         }else{
             item.style.display = 'none';
         }
