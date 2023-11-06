@@ -22,6 +22,7 @@ class ProductController
 
         require 'Models/Product.php';
         (new Product())->create($productName,$categoryID,$productImage);
+        header("Location: index.php?action=productIndex");
     }
     //Điều hướng sang trang Product edit
     public function productEdit()
@@ -44,6 +45,7 @@ class ProductController
 
         require 'Models/Product.php';
         (new Product())->update($productID,$productName,$categoryID,$productImage);
+        header("Location: index.php?action=productIndex");
 
     }
     //Truyền dữ liệu sang function destroy của class Product
@@ -53,5 +55,6 @@ class ProductController
 
         require 'Models/Product.php';
         $each = (new Product())->destroy($delId);
+        header("Location: index.php?action=productIndex");
     }
 }

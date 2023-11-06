@@ -1,45 +1,47 @@
 <?php
 
 require_once 'Models/Connect.php';
+require 'Models/Product_Object.php';
+
 class Product
 {
-    private int $id;
-    private string $productName;
-    private int $idCategory;
-    private string $image;
+    // private int $id;
+    // private string $productName;
+    // private int $idCategory;
+    // private string $image;
 
-    //Tạo getter và setter
-    public function get_ID(){
-        return $this->id;
-    }
+    // //Tạo getter và setter
+    // public function get_ID(){
+    //     return $this->id;
+    // }
 
-    public function set_ID($var){
-        return $this->id = $var;
-    }
+    // public function set_ID($var){
+    //     return $this->id = $var;
+    // }
 
-    public function get_ProductName(){
-        return $this->productName;
-    }
+    // public function get_ProductName(){
+    //     return $this->productName;
+    // }
 
-    public function set_ProductName($var){
-        return $this->productName = $var;
-    }
+    // public function set_ProductName($var){
+    //     return $this->productName = $var;
+    // }
 
-    public function get_IDCategoty(){
-        return $this->idCategory;
-    }
+    // public function get_IDCategoty(){
+    //     return $this->idCategory;
+    // }
 
-    public function set_IDCategoty($var){
-        return $this->idCategory = $var;
-    }
+    // public function set_IDCategoty($var){
+    //     return $this->idCategory = $var;
+    // }
 
-    public function get_Image(){
-        return $this->image;
-    }
+    // public function get_Image(){
+    //     return $this->image;
+    // }
 
-    public function set_Image($var){
-        return $this->image = $var;
-    }
+    // public function set_Image($var){
+    //     return $this->image = $var;
+    // }
 
     //Lấy tất cả Product
     public function all()
@@ -51,11 +53,7 @@ class Product
 
         $arr = [];
         foreach($result as $row){
-            $object = new self();
-            $object->set_ID($row['ID']);
-            $object->set_ProductName($row['ProductName']);
-            $object->set_IDCategoty($row['IDCategory']);
-            $object->set_Image($row['Image']);
+            $object = new Product_Object($row['ID'], $row['ProductName'], $row['IDCategory'], $row['Image']);
 
             $arr[] = $object;
         }
@@ -79,14 +77,9 @@ class Product
 
         move_uploaded_file($prodImg['tmp_name'],'Images/'.$new_file);
 
-        $object = new self();
-        $object->set_ProductName($productName);
-        $object->set_IDCategoty($categoryID);
-        $object->set_Image($new_file);
+        $object = new Product_Object(0,$productName,$categoryID,$new_file);
 
-
-
-        $sql = "insert into products (ProductName,IDCategory,Image) values('{$object->productName}','{$object->idCategory}','{$object->image}')";
+        $sql = "insert into products (ProductName,IDCategory,Image) values('{$object->get_ProductName()}','{$object->get_IDCategoty()}','{$object->get_Image()}')";
 
         (new Connect())->execute($sql);
         header("Location: index.php?action=productIndex");
@@ -102,11 +95,7 @@ class Product
         $row = mysqli_fetch_array($result);
 
         
-            $object = new self();
-            $object->set_ID($row['ID']);
-            $object->set_ProductName($row['ProductName']);
-            $object->set_IDCategoty($row['IDCategory']);
-            $object->set_Image($row['Image']);
+            $object = new Product_Object($editId, $row['ProductName'],$row['IDCategory'],$row['Image']);
 
         return $object;
     }
@@ -126,12 +115,9 @@ class Product
 
         move_uploaded_file($prodImg['tmp_name'],'Images/'.$new_file);
 
-        $object = new self();
-        $object->set_ProductName($productName);
-        $object->set_IDCategoty($categoryID);
-        $object->set_Image($new_file);
+        $object = new Product_Object($productID,$productName,$categoryID,$new_file);
 
-        $sql = "update products set ProductName = '$object->productName', IDCategory = '$object->idCategory', Image = '$object->image' where ID = '$productID'";
+        $sql = "update products set ProductName = '{$object->get_ProductName()}', IDCategory = '{$object->get_IDCategoty()}', Image = '{$object->get_Image()}' where ID = '$productID'";
         // die($sql);
         (new Connect())->execute($sql);
         header("Location: index.php?action=productIndex");

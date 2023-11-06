@@ -16,6 +16,7 @@ class CategoryController
 
         require 'Models/Category.php';
         (new Category())->create($categoryName);
+        header("Location: index.php");
     }
     //Điều hướng sang trang Category edit
     public function edit()
@@ -34,6 +35,7 @@ class CategoryController
 
         require 'Models/Category.php';
         (new Category())->update($categoryID,$categoryName);
+        header("Location: index.php");
 
     }
     //Truyền dữ liệu sang function destroy của class Category
@@ -43,5 +45,6 @@ class CategoryController
 
         require 'Models/Category.php';
         $each = (new Category())->destroy($delId);
+        header("Location: index.php");
     }
 }
